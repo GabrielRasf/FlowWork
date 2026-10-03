@@ -22,10 +22,15 @@ ol {
 
 /* ========== Configuração geral de botões ========== */
 .button-geral {
-    padding: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 10px;
     border-radius: 15px;
-    width: 80px;
-    height: 25.5px;
+    width: auto;
+    min-width: 80px;
+    height: auto;
+    min-height: 25.5px;
     border: none;
     transition: all 0.3s ease;
 }
