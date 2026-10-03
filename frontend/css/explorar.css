@@ -6,7 +6,7 @@
     --cor-laranja: #ff5c22;
     --cor-roxo: #7e23ff;
     --cor-texto-principal: #e1e5f5;
-    --cor-texto-secundario: #a0a3b0;
+    --cor-texto-secundario: #d5d8e6;
     --cor-divisoria: #e1e5f5;
     --cor-fundo-modal: #1a1625;
 }
@@ -99,11 +99,10 @@ h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-b
 }
 
 .carousel-track {
-    display: flex;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE e Edge */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    overflow: visible;
     padding-bottom: 1rem;
 }
 
@@ -112,16 +111,16 @@ h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-b
 }
 
 .workout-card {
-    flex: 0 0 300px;
-    height: 350px;
-    margin-right: 1.5rem;
+    width: 100%;
+    height: 240px;
+    margin-right: 0;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #333;
+    border: 1px solid #8b84a8;
     transition: transform 0.3s ease;
     cursor: pointer;
     position: relative; /* Para o gradiente */
-    background-color: var(--cor-fundo-modal);
+    background: linear-gradient(165deg, rgba(126, 35, 255, 0.72), rgba(255, 92, 34, 0.38) 42%, #161222);
 }
 
 .lista-vazia {
@@ -152,34 +151,25 @@ h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-b
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent);
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(to top, rgba(9, 5, 22, 0.94) 18%, rgba(9, 5, 22, 0.15) 72%);
+    color: #f7f8fc;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 
 .card-content h3 {
     font-size: 1.5rem;
 }
 
+.card-content p {
+    margin-top: 0.45rem;
+    color: #e7eaf6;
+    font-size: 0.98rem;
+    line-height: 1.4;
+}
+
 /* Setas do Carrossel */
 .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 45px;
-    height: 45px;
-    background-color: var(--cor-roxo);
-    color: white;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 1.5rem;
-    opacity: 0.8;
-    transition: opacity 0.2s, transform 0.2s;
+    display: none;
 }
 .carousel-arrow:hover {
     opacity: 1;

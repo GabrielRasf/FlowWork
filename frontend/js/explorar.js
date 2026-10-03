@@ -84,7 +84,9 @@ function criarCard(treino) {
     conteudo.className = 'card-content';
     const titulo = document.createElement('h3');
     titulo.textContent = treino.titulo;
-    conteudo.appendChild(titulo);
+    const resumo = document.createElement('p');
+    resumo.textContent = treino.descricao || '';
+    conteudo.append(titulo, resumo);
     card.appendChild(conteudo);
     card.addEventListener('click', () => abrirFicha(treino.id));
     return card;
@@ -337,6 +339,8 @@ async function carregarListas() {
         mostrarAviso(populares, texto);
     }
     document.querySelectorAll('.carousel-container').forEach(configurarCarrossel);
+    const idPedido = new URLSearchParams(location.search).get('id');
+    if (idPedido && /^[1-9]\d*$/.test(idPedido)) abrirFicha(Number(idPedido));
 }
 
 carregarListas();
