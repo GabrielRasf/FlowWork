@@ -156,6 +156,16 @@ h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-b
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 
+button.card-content {
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+}
+
 .card-content h3 {
     font-size: 1.5rem;
 }
@@ -165,6 +175,10 @@ h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-b
     color: #e7eaf6;
     font-size: 0.98rem;
     line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* Setas do Carrossel */
@@ -256,4 +270,147 @@ h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-b
 
 .comentarios-ficha .button-geral {
     margin-top: 0.75rem;
+}
+
+.catalogo {
+    margin-bottom: 3rem;
+}
+
+.catalogo-titulo {
+    font-size: 2.5rem;
+    border-bottom: 3px solid var(--cor-divisoria);
+    padding-bottom: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.catalogo-abas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.catalogo-abas .button-geral[aria-selected="false"] {
+    background: transparent;
+    color: var(--cor-texto-principal);
+    border: 1px solid #8b84a8;
+}
+
+.busca-catalogo label {
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.busca-catalogo input,
+.campo-filtro select {
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    font: inherit;
+}
+
+.atalhos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.atalho {
+    background: transparent;
+    color: var(--cor-texto-principal);
+    border: 1px solid #8b84a8;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    font: inherit;
+}
+
+.atalho[aria-pressed="true"] {
+    background: var(--cor-roxo);
+    border-color: var(--cor-roxo);
+    color: white;
+}
+
+.abrir-filtros {
+    display: none;
+    margin-bottom: 1rem;
+}
+
+.painel-filtros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.campo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.campo-limpar {
+    justify-content: flex-end;
+}
+
+.contador-resultados {
+    margin-bottom: 1rem;
+    color: var(--cor-texto-secundario);
+}
+
+.carregar-mais {
+    margin-top: 1rem;
+}
+
+.card-meta {
+    margin-top: 0.35rem;
+    color: #d7dced;
+    font-size: 0.92rem;
+}
+
+.lista-fichas-exercicio {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.lista-fichas-exercicio button {
+    background: transparent;
+    color: var(--cor-texto-principal);
+    border: none;
+    padding: 0;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media (max-width: 720px) {
+    .abrir-filtros {
+        display: inline-flex;
+    }
+
+    .painel-filtros {
+        display: none;
+    }
+
+    .painel-filtros.aberto {
+        display: grid;
+        position: fixed;
+        z-index: 1100;
+        left: 1rem;
+        right: 1rem;
+        top: 5rem;
+        max-height: calc(100vh - 7rem);
+        overflow: auto;
+        padding: 1rem;
+        border-radius: 16px;
+        border: 1px solid #444;
+        background: var(--cor-fundo-modal);
+    }
 }

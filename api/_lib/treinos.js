@@ -37,11 +37,16 @@ export function respostaTreino(treino, exercicios, comentarios) {
   };
 }
 
-export function respostaTreinoResumo(treino) {
+export function respostaTreinoResumo(treino, exercicios = []) {
   return {
     id: treino.id,
     titulo: treino.titulo,
     descricao: treino.descricao,
     criadoEm: dataIso(treino.criado_em),
+    exercicios: exercicios.map((item) => ({
+      nome: item.nome,
+      bloco: item.bloco,
+      seriesRepeticoes: item.series_repeticoes,
+    })),
   };
 }

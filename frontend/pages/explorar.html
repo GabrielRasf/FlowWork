@@ -26,22 +26,73 @@
         </header>
 
         <main>
-            <section class="div-adicionado-recentemente">
-                <h2>Adicionado Recentemente</h2>
-                <div class="carousel-container">
-                    <button class="carousel-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
-                    <div class="carousel-track" id="lista-recentes"></div>
-                    <button class="carousel-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
+            <section class="catalogo">
+                <h1 class="catalogo-titulo">Explorar</h1>
+                <div class="catalogo-abas" role="tablist" aria-label="Tipo de catálogo">
+                    <button type="button" class="button-geral button-inicio" id="aba-exercicios" role="tab" aria-selected="true" aria-controls="resultados">Exercícios</button>
+                    <button type="button" class="button-geral" id="aba-treinos" role="tab" aria-selected="false" aria-controls="resultados">Treinos</button>
                 </div>
-            </section>
 
-            <section class="div-treinos-mais-populares">
-                <h2>Treinos mais populares</h2>
-                <div class="carousel-container">
-                    <button class="carousel-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
-                    <div class="carousel-track" id="lista-populares"></div>
-                    <button class="carousel-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
+                <form id="form-busca" class="busca-catalogo" role="search">
+                    <label for="busca" id="rotulo-busca">Buscar exercício...</label>
+                    <input id="busca" name="busca" type="search" autocomplete="off" placeholder="Buscar exercício...">
+                </form>
+
+                <div class="atalhos" id="atalhos" aria-label="Formas de explorar"></div>
+
+                <button type="button" class="button-geral button-inicio abrir-filtros" id="abrir-filtros" aria-expanded="false" aria-controls="painel-filtros">Filtrar</button>
+
+                <form id="painel-filtros" class="painel-filtros">
+                    <div class="campo-filtro filtro-exercicio">
+                        <label for="filtro-grupo">Grupo muscular</label>
+                        <select id="filtro-grupo" name="grupo">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="campo-filtro filtro-exercicio">
+                        <label for="filtro-tipo">Tipo</label>
+                        <select id="filtro-tipo" name="tipo">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="campo-filtro filtro-exercicio">
+                        <label for="filtro-equipamento">Equipamento</label>
+                        <select id="filtro-equipamento" name="equipamento">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="campo-filtro filtro-treino">
+                        <label for="filtro-foco">Grupo muscular</label>
+                        <select id="filtro-foco" name="foco">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="campo-filtro filtro-treino">
+                        <label for="filtro-nivel">Nível</label>
+                        <select id="filtro-nivel" name="nivel">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="campo-filtro filtro-treino">
+                        <label for="filtro-equipamento-treino">Equipamento</label>
+                        <select id="filtro-equipamento-treino" name="equipamento-treino">
+                            <option value="">Todos</option>
+                            <option value="Sem equipamentos">Sem equipamentos</option>
+                            <option value="Com equipamentos">Com equipamentos</option>
+                        </select>
+                    </div>
+                    <div class="campo-filtro">
+                        <label for="filtro-ordem">Ordenar</label>
+                        <select id="filtro-ordem" name="ordem"></select>
+                    </div>
+                    <div class="campo-filtro campo-limpar">
+                        <button type="button" class="button-geral button-sair" id="limpar-filtros">Limpar filtros</button>
+                    </div>
+                </form>
+
+                <p id="contador" class="contador-resultados" role="status" aria-live="polite"></p>
+                <div id="resultados" class="carousel-track" aria-live="polite"></div>
+                <button type="button" class="button-geral button-inicio carregar-mais" id="carregar-mais" hidden>Carregar mais</button>
             </section>
         </main>
     </div>

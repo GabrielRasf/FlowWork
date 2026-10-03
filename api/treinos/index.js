@@ -6,12 +6,45 @@ import { lerJson, validarTreino } from '../_lib/validacao.js';
 async function listar(_req, res) {
   const sql = getSql();
   const linhas = await sql`
-    SELECT id, titulo, descricao, criado_em
-    FROM treinos
-    ORDER BY criado_em DESC
-    LIMIT 100
+    SELECT
+      t.id,
+      t.titulo,
+      t.descricao,
+      t.criado_em,
+      e.bloco,
+      e.nome AS exercicio_nome,
+      e.series_repeticoes,
+      e.ordem
+    FROM treinos t
+    LEFT JOIN exercicios e ON e.treino_id = t.id
+    WHERE t.id IN (
+      SELECT id
+      FROM treinos
+      ORDER BY criado_em DESC
+      LIMIT 100
+    )
+    ORDER BY t.criado_em DESC, e.ordem
   `;
-  json(res, 200, { treinos: linhas.map(respostaTreinoResumo) });
+
+  const grupos = new Map();
+  for (const linha of linhas) {
+    if (!grupos.has(linha.id)) {
+      grupos.set(linha.id, { treino: linha, exercicios: [] });
+    }
+    if (linha.exercicio_nome) {
+      grupos.get(linha.id).exercicios.push({
+        bloco: linha.bloco,
+        nome: linha.exercicio_nome,
+        series_repeticoes: linha.series_repeticoes,
+      });
+    }
+  }
+
+  json(res, 200, {
+    treinos: [...grupos.values()].map(({ treino, exercicios }) =>
+      respostaTreinoResumo(treino, exercicios)
+    ),
+  });
 }
 
 async function criar(req, res) {

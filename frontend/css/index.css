@@ -138,10 +138,19 @@ main {
     padding-bottom: 8px;
 }
 
+.vitrine-nota {
+    margin: -4px 0 12px;
+    color: #d5d9e8;
+}
+
+.vitrine-link {
+    margin-top: 14px;
+}
+
 .adicionado-recentemente-boxs,
 .treinos-mais-populares-boxs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(210px, 280px));
     gap: 12px;
 }
 
