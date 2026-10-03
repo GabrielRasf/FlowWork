@@ -1,0 +1,38 @@
+:root {
+    /* Body */
+    --bg-body: #090516;
+
+    /* Nav  não tem */
+    --cor-bg-nav: red;
+
+    /* Button entrar */
+    --bg-button-entrar: #ff5c22;
+    --borda-button-entrar: 1px solid;
+    --color-button-entrar: rgb(255, 255, 255);
+
+    /* Button inscrever */
+    --bg-button-inscrever: #7e23ff;
+    --color-button-inscrever: #e1e5f5;
+
+    /* Button explorar */
+    --borda-button-explorar: 2px solid;
+    --bg-button-explorar: #7e23ff;
+
+    /* Button criar */
+    --bg-button-criar: #ff5c22;
+    --color-button-criar: white;
+
+
+    /* texto */
+    --text: rgb(255, 255, 255);
+
+    --background: #090516;
+
+    --primary: #ff5c22;
+
+    --secondary: #7e23ff;
+
+    --accent: #ffad42; 
+
+}
+

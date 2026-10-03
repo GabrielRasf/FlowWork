@@ -1,0 +1,269 @@
+/* ======================================== */
+/* VARIÁVEIS DE COR E ESTILOS GLOBAIS       */
+/* ======================================== */
+:root {
+    --cor-fundo: #090516;
+    --cor-laranja: #ff5c22;
+    --cor-roxo: #7e23ff;
+    --cor-texto-principal: #e1e5f5;
+    --cor-texto-secundario: #a0a3b0;
+    --cor-divisoria: #e1e5f5;
+    --cor-fundo-modal: #1a1625;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ======================================== */
+/* HEADER E NAVEGAÇÃO ALINHADOS           */
+/* ======================================== */
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    background-color: var(--cor-fundo);
+}
+
+.logo-container a {
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.logo-container .fa-dumbbell {
+    font-size: 2.2rem;
+    margin-right: 10px;
+    color: var(--cor-roxo);
+}
+
+/* Botões do Header */
+.button-geral {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-geral:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-inicio {
+    background-color: var(--cor-roxo);
+    color: white;
+    margin-right: 10px;
+}
+
+.button-sair {
+    background-color: var(--cor-laranja);
+    color: white;
+}
+
+/* ======================================== */
+/* LAYOUT PRINCIPAL E TÍTULOS             */
+/* ======================================== */
+main > section { margin-bottom: 6rem; }
+h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-bottom: 10px; margin-bottom: 2.5rem; }
+
+/* ======================================== */
+/* CARROSSEL DE TREINOS                     */
+/* ======================================== */
+.carousel-container {
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE e Edge */
+    padding-bottom: 1rem;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.workout-card {
+    flex: 0 0 300px;
+    height: 350px;
+    margin-right: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    position: relative; /* Para o gradiente */
+    background-color: var(--cor-fundo-modal);
+}
+
+.lista-vazia {
+    align-self: center;
+    color: var(--cor-texto-secundario);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 0 3rem;
+}
+.workout-card:hover {
+    transform: translateY(-5px);
+}
+
+.workout-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+}
+
+/* Setas do Carrossel */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background-color: var(--cor-roxo);
+    color: white;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5rem;
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.carousel-arrow:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+.arrow-prev { left: -22px; }
+.arrow-next { right: -22px; }
+
+/* ======================================== */
+/* Organização dos modais - Se for, mexe aqui       */
+/* ======================================== */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); }
+.modal-content { background-color: var(--cor-fundo-modal); margin: 10% auto; padding: 2.5rem; border: 1px solid #444; width: 90%; max-width: 600px; border-radius: 16px; position: relative; color: var(--cor-texto-principal); }
+.modal-content h2 { font-size: 2rem; border-bottom: none; margin-bottom: 1rem; color: var(--cor-roxo); }
+.fechar { color: #aaa; position: absolute; top: 15px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; transition: color 0.2s; }
+.fechar:hover { color: white; }
+.modal-content img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem; }
+.modal-content .descricao-treino { margin: 1rem 0; color: var(--cor-texto-secundario); font-size: 1.1rem; line-height: 1.6; }
+.botao-ver-treino { display: block; width: 100%; padding: 14px; margin-top: 1.5rem; background-color: var(--cor-roxo); color: white; text-align: center; text-decoration: none; font-weight: bold; border-radius: 8px; transition: background-color 0.3s; font-size: 1.1rem; }
+.botao-ver-treino:hover { background-color: #5d1abd; }
+
+#modal-blocos h3 {
+    margin-top: 1.25rem;
+    font-size: 1.2rem;
+    border-bottom: none;
+}
+
+#modal-blocos ul {
+    margin: 0.5rem 0 0 1.2rem;
+}
+
+#modal-blocos li {
+    margin-bottom: 0.35rem;
+    line-height: 1.5;
+}
+
+.comentarios-ficha {
+    margin-top: 1.5rem;
+    border-top: 1px solid #444;
+    padding-top: 1.25rem;
+}
+
+.comentarios-ficha h3 {
+    font-size: 1.2rem;
+    border-bottom: none;
+    margin-bottom: 0.75rem;
+}
+
+.comentario-item {
+    margin-bottom: 1rem;
+}
+
+.comentario-item strong {
+    display: block;
+}
+
+.comentario-texto,
+.comentario-aviso {
+    color: var(--cor-texto-secundario);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.comentario-acoes,
+.comentario-edicao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.form-comentario input,
+.form-comentario textarea,
+.comentario-edicao textarea {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    font: inherit;
+}
+
+.comentarios-ficha .button-geral {
+    margin-top: 0.75rem;
+}

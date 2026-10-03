@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Work - Versão Interativa</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* ======================================== */
+        /* VARIÁVEIS DE COR E ESTILOS GLOBAIS       */
+        /* ======================================== */
+        :root {
+            --cor-fundo: #090516;
+            --cor-laranja: #ff5c22;
+            --cor-roxo: #7e23ff;
+            --cor-texto-principal: #e1e5f5;
+            --cor-texto-secundario: #a0a3b0;
+            --cor-divisoria: #e1e5f5;
+            --cor-fundo-modal: #1a1625;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-principal);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* ======================================== */
+        /* HEADER E NAVEGAÇÃO ALINHADOS             */
+        /* ======================================== */
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            background-color: var(--cor-fundo);
+        }
+
+        .logo-container h1 {
+            font-size: 2.5rem; /* Ajuste para caber melhor na linha */
+            font-weight: 800;
+        }
+        
+        .logo-container h1 .fa-dumbbell {
+            font-size: 2.2rem;
+            margin-right: 10px;
+            vertical-align: -2px;
+            color: var(--cor-roxo);
+        }
+
+        .button-geral {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button-geral:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-entrar {
+            background-color: var(--cor-laranja);
+            color: white;
+        }
+
+        .button-inscrever {
+            background-color: var(--cor-roxo);
+            color: white;
+            margin-left: 10px;
+        }
+        
+        /* ======================================== */
+        /* LAYOUT PRINCIPAL E TÍTULOS               */
+        /* ======================================== */
+        .div-call-redirection { text-align: center; margin: 4rem 0; }
+        .div-call-redirection h1 { font-size: 3.5rem; }
+        .div-call-redirection h5 { font-size: 1.2rem; color: var(--cor-texto-secundario); margin-top: 0.5rem; }
+        .div-call-redirection .button-geral { margin-top: 25px; margin-right: 10px; }
+        .div-call-redirection .button-explorar { background-color: var(--cor-roxo); color: white; }
+        .div-call-redirection .button-criar { background-color: var(--cor-laranja); color: white; }
+
+        main > div { margin-bottom: 6rem; }
+        h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-bottom: 10px; margin-bottom: 2.5rem; }
+
+        /* ======================================== */
+        /* CARROSSEL DE TREINOS                     */
+        /* ======================================== */
+        .carousel-container {
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE e Edge */
+            padding-bottom: 1rem; /* Espaço para sombra do card */
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        .workout-card {
+            flex: 0 0 300px; /* Largura fixa para cada card */
+            margin-right: 1.5rem; /* Espaço entre os cards */
+            background-color: #1a1625;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+        }
+        .workout-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .workout-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            color: var(--cor-texto-principal);
+            margin-bottom: 0.25rem;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: var(--cor-texto-secundario);
+        }
+        
+        /* Setas do Carrossel */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background-color: var(--cor-roxo); /* Cor da seta */
+            color: white;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .carousel-arrow:hover {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .arrow-prev { left: -22px; }
+        .arrow-next { right: -22px; }
+
+        /* ======================================== */
+        /* MODAIS (LOGIN/CADASTRO)                  */
+        /* ======================================== */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); }
+        .modal-content { background-color: var(--cor-fundo-modal); margin: 10% auto; padding: 2.5rem; border: 1px solid #444; width: 90%; max-width: 500px; border-radius: 16px; position: relative; color: var(--cor-texto-principal); }
+        .fechar { color: #aaa; position: absolute; top: 15px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; transition: color 0.2s; }
+        .fechar:hover { color: white; }
+        .modal-nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.1); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 0.2s; font-size: 1.2rem; }
+        .modal-nav-arrow:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .arrow-left { left: -60px; }
+        .arrow-right { right: -60px; }
+        .form { display: flex; flex-direction: column; gap: 1rem; }
+        .form input, .form select { padding: 14px; border: 1px solid #444; border-radius: 8px; background-color: #2a2639; color: var(--cor-texto-principal); font-size: 1rem; }
+        .button-submit-form { width: 100%; padding: 14px; background-color: var(--cor-roxo); color: white; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; margin-top: 1rem; font-weight: bold; }
+
+        /* ======================================== */
+        /* SEÇÃO 'SUA MELHOR VERSÃO'                */
+        /* ======================================== */
+        .div-sua-melhor-versao { position: relative; width: 100%; height: 500px; border-radius: 16px; overflow: hidden; color: white; }
+        .background-image-melhor-versao { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1; }
+        .overlay-melhor-versao { width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2)); position: absolute; top: 0; left: 0; z-index: 2; display: flex; justify-content: center; align-items: center; text-align: center; }
+        .conteudo-melhor-versao { z-index: 3; padding: 2rem; }
+        .conteudo-melhor-versao h2 { font-size: 3.5rem; font-weight: bold; margin-bottom: 1rem; border-bottom: none; }
+        .conteudo-melhor-versao p { font-size: 1.25rem; max-width: 600px; margin-bottom: 2rem; color: var(--cor-texto-principal); /* COR ATUALIZADA AQUI */ }
+        .conteudo-melhor-versao .button-explorar-planos { padding: 15px 35px; font-size: 1.1rem; background-color: var(--cor-roxo); border: none; }
+        .conteudo-melhor-versao .button-explorar-planos a { color: white; font-weight: bold; }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="modal-entrar" class="modal">
+            <div class="modal-content">
+                <span class="fechar" onclick="fecharModal('modal-entrar')">&times;</span>
+                <div class="modal-nav-arrow arrow-right" onclick="trocarModal('modal-entrar', 'modal-inscrever')"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="div-form"><h2>Entrar</h2><form class="form"><input type="email" name="email" placeholder="E-mail" required><input type="password" name="password" placeholder="Senha" required><div class="div-button"><button class="button-submit-form" type="submit">Entrar</button></div></form></div>
+            </div>
+        </div>
+        <div id="modal-inscrever" class="modal">
+            <div class="modal-content">
+                <span class="fechar" onclick="fecharModal('modal-inscrever')">&times;</span>
+                <div class="modal-nav-arrow arrow-left" onclick="trocarModal('modal-inscrever', 'modal-entrar')"><i class="fa-solid fa-chevron-left"></i></div>
+                <div class="div-form"><h2>Inscrever-se</h2><form class="form"><input type="text" placeholder="Nome completo" required><input type="email" placeholder="E-mail" required><input type="password" placeholder="Crie uma senha" required><input type="password" placeholder="Confirme sua senha" required><div class="div-button"><button class="button-submit-form" type="submit">Cadastrar</button></div></form></div>
+            </div>
+        </div>
+
+        <header>
+            <nav>
+                <div class="logo-container">
+                    <h1><i class="fa-solid fa-dumbbell"></i>Flow Work</h1>
+                </div>
+                <div class="div-entrar-inscrever">
+                    <button class="button-geral button-entrar" onclick="abrirModal('modal-entrar')">Entrar</button>
+                    <button class="button-geral button-inscrever" onclick="abrirModal('modal-inscrever')">Inscrever-se</button>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="div-call-redirection">
+                <h1>O futuro do treino.</h1>
+                <h5>Planos, comunidade e resultados. Tudo em um só lugar.</h5>
+                <button class="button-geral button-explorar"><a href="explorar_Teste.html">Explorar</a></button>
+                <button class="button-geral button-criar"><a href="../frontend/pages/criar.html">Criar</a></button>
+            </div>
+
+            <div class="div-adicionado-recentemente">
+                <h2>Adicionado Recentemente</h2>
+                <div class="carousel-container">
+                    <button class="carousel-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=500&q=80" alt="Treino de Força"><div class="card-content"><h3>Hipertrofia Total</h3><p>Força e Resistência</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1540496905039-512d2f7d53af?w=500&q=80" alt="Yoga"><div class="card-content"><h3>Yoga Matinal</h3><p>Flexibilidade e Paz</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=80" alt="Crossfit"><div class="card-content"><h3>Cross Training WOD</h3><p>Alta Intensidade</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=500&q=80" alt="Levantamento de peso"><div class="card-content"><h3>Powerlifting Básico</h3><p>Levantamento de Peso</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1554344728-77cf90d922a2?w=500&q=80" alt="Corrida"><div class="card-content"><h3>Cardio Intenso</h3><p>Queima de Calorias</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1598266663999-79a405106501?w=500&q=80" alt="Pilates"><div class="card-content"><h3>Pilates Solo</h3><p>Controle Corporal</p></div></div>
+                    </div>
+                    <button class="carousel-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="div-treinos-mais-populares">
+                <h2>Treinos mais populares</h2>
+                <div class="carousel-container">
+                    <button class="carousel-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&q=80" alt="Crossfit"><div class="card-content"><h3>Cross Training WOD</h3><p>Alta Intensidade</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=500&q=80" alt="Treino de Força"><div class="card-content"><h3>Hipertrofia Total</h3><p>Força e Resistência</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1554344728-77cf90d922a2?w=500&q=80" alt="Corrida"><div class="card-content"><h3>Cardio Intenso</h3><p>Queima de Calorias</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1540496905039-512d2f7d53af?w=500&q=80" alt="Yoga"><div class="card-content"><h3>Yoga Matinal</h3><p>Flexibilidade e Paz</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1598266663999-79a405106501?w=500&q=80" alt="Pilates"><div class="card-content"><h3>Pilates Solo</h3><p>Controle Corporal</p></div></div>
+                        <div class="workout-card"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=500&q=80" alt="Levantamento de peso"><div class="card-content"><h3>Powerlifting Básico</h3><p>Levantamento de Peso</p></div></div>
+                    </div>
+                    <button class="carousel-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="div-sua-melhor-versao">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" alt="Mulher se exercitando" class="background-image-melhor-versao">
+                <div class="overlay-melhor-versao">
+                    <div class="conteudo-melhor-versao">
+                        <h2>Sua melhor versão está aqui</h2>
+                        <p>Descubra treinos e planos personalizados para atingir seus objetivos.</p>
+                        <button class="button-geral button-explorar-planos"><a href="../frontend/pages/explorar.html">Explorar planos</a></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div> <script>
+        // Funções do Modal
+        function abrirModal(idModal) { document.getElementById(idModal).style.display = "block"; }
+        function fecharModal(idModal) { document.getElementById(idModal).style.display = "none"; }
+        function trocarModal(modalAtual, proximoModal) {
+            fecharModal(modalAtual);
+            abrirModal(proximoModal);
+        }
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+
+        // NOVO: Lógica do Carrossel
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousels = document.querySelectorAll('.carousel-container');
+
+            carousels.forEach(carousel => {
+                const track = carousel.querySelector('.carousel-track');
+                const prevButton = carousel.querySelector('.arrow-prev');
+                const nextButton = carousel.querySelector('.arrow-next');
+                const cardWidth = track.querySelector('.workout-card').offsetWidth;
+                const cardMargin = parseFloat(window.getComputedStyle(track.querySelector('.workout-card')).marginRight);
+
+                prevButton.addEventListener('click', () => {
+                    track.scrollLeft -= cardWidth + cardMargin;
+                });
+
+                nextButton.addEventListener('click', () => {
+                    track.scrollLeft += cardWidth + cardMargin;
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

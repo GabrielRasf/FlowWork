@@ -1,0 +1,113 @@
+/* Estilos Gerais */
+body {
+    background-color: var(--background, #121212);
+    color: var(--text, #f1f1f1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Principal */
+.main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Navegação Superior */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+nav h1 a {
+    color: var(--primary, #ff5c22);
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Cabeçalho do Treino */
+.workout-header img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.workout-header h2 {
+    color: var(--primary, #ff5c22);
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.workout-header p {
+    color: #ccc;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Detalhes e Exercícios */
+.workout-details h3 {
+    font-size: 24px;
+    color: var(--primary, #ff5c22);
+    border-bottom: 2px solid var(--secondary, #7e23ff);
+    padding-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.exercise-list {
+    list-style: none;
+    padding: 0;
+}
+
+.exercise-list li {
+    background-color: #2a2a2a;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--primary, #ff5c22);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.exercise-list li:hover {
+    transform: translateX(5px);
+    background-color: #333;
+}
+
+.exercise-list strong {
+    color: #f1f1f1;
+    font-size: 18px;
+}
+
+.exercise-list p {
+    color: #bbb;
+    margin: 5px 0 0;
+}
+
+/* Botão de Voltar */
+.voltar-link {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 25px;
+    background-color: var(--secondary, #7e23ff);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.voltar-link:hover {
+    background-color: var(--primary, #ff5c22);
+}

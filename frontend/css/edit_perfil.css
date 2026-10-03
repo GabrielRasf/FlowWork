@@ -1,0 +1,108 @@
+select, input[type="date"] {
+    color: var(--color-button-inscrever);
+    background-color: #1a112c;
+    border: 1px solid var(--secondary);
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    width: 100%;
+    font-family: inherit;
+}
+
+select option {
+    color: black; /* Para o texto do dropdown ficar visível */
+}
+
+input::placeholder {
+    color: var(--color-button-inscrever);
+}
+
+.button-submit-form {
+    background-color: var(--bg-button-inscrever);
+    color: var(--color-button-inscrever);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.button-submit-form:hover {
+    background-color: var(--primary); 
+    transform: scale(1.02);
+}
+
+.button-submit-form:active {
+    transform: scale(0.98);
+    background-color: var(--primary);
+}
+
+input,
+select,
+textarea {
+    color: var(--color-button-inscrever);
+    background-color: #1a112c;
+    border: 1px solid var(--secondary);
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-family: inherit;
+    width: 100%;
+    transition: color 0.2s;
+}
+
+input:focus,
+input:valid,
+select:focus,
+select:valid,
+textarea:focus,
+textarea:valid {
+    color: white;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-button-inscrever);
+}
+
+select option {
+    color: black; /* para opções visíveis no dropdown */
+}
+
+.profile-photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 5%;
+    margin-bottom: 20px;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--secondary);
+}
+
+.button-trocar-foto {
+    background-color: var(--bg-button-inscrever);
+    color: var(--color-button-inscrever);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+}
+
+.button-trocar-foto:hover {
+    background-color: var(--primary);
+    transform: scale(1.03);
+}
+

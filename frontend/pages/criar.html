@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Treino - Flow Work</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/criar.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo-container">
+                    <a href="index.html">
+                        <i class="fa-solid fa-dumbbell"></i>Flow Work
+                    </a>
+                </div>
+                <div class="botoes-nav">
+                    <a href="index.html" class="button-geral button-inicio">Início</a>
+                    <a href="index.html" class="button-geral button-sair">Sair</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div id="title-container">
+                <h2 id="workout-title-display">Criar nova Ficha</h2>
+                <span class="edit-cue"><i class="fa-solid fa-pen-to-square"></i></span>
+            </div>
+            
+            <section class="section-container">
+                <div class="about-section">
+                    <div id="image-uploader-area" title="Clique para adicionar uma imagem">
+                        <span id="uploader-text"><i class="fa-solid fa-image" style="font-size: 2rem; display: block; margin-bottom: 1rem;"></i>Clique ou arraste uma imagem</span>
+                    </div>
+                    <input type="file" id="image-input" accept="image/*" hidden>
+                    
+                    <div class="description-wrapper">
+                        <label for="workout-description">Descrição da Ficha</label>
+                        <textarea id="workout-description" placeholder="Ex: Ficha focada em hipertrofia para membros superiores, com ênfase em progressão de carga..."></textarea>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section-container">
+                <div class="workouts-grid">
+                    <div class="workout-column">
+                        <div class="workout-title-container">
+                            <h3>Treino A</h3>
+                            <span class="edit-cue"><i class="fa-solid fa-pen-to-square"></i></span>
+                        </div>
+                        <div id="list-a" class="exercise-list"></div>
+                        <button class="add-exercise-button button-geral" data-target="list-a">
+                            <i class="fa-solid fa-plus"></i> Adicionar Exercício
+                        </button>
+                    </div>
+                    
+                    <div class="workout-column">
+                        <div class="workout-title-container">
+                            <h3>Treino B</h3>
+                            <span class="edit-cue"><i class="fa-solid fa-pen-to-square"></i></span>
+                        </div>
+                        <div id="list-b" class="exercise-list"></div>
+                        <button class="add-exercise-button button-geral" data-target="list-b">
+                            <i class="fa-solid fa-plus"></i> Adicionar Exercício
+                        </button>
+                    </div>
+
+                    <div class="workout-column">
+                        <div class="workout-title-container">
+                            <h3>Treino C</h3>
+                            <span class="edit-cue"><i class="fa-solid fa-pen-to-square"></i></span>
+                        </div>
+                        <div id="list-c" class="exercise-list"></div>
+                        <button class="add-exercise-button button-geral" data-target="list-c">
+                            <i class="fa-solid fa-plus"></i> Adicionar Exercício
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <button id="publish-button" class="button-geral">Publicar Ficha</button>
+        </main>
+    </div>
+
+    <script type="module" src="../js/criar.js"></script>
+</body>
+</html>

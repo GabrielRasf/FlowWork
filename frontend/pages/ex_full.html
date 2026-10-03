@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/ex_full.css">
+    <link rel="stylesheet" type="text/css" href="../css/root.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <title> Flow Work</title>
+</head>
+
+<body style="background-color: var(--bg-body);">
+    <!-- Modal Entrar -->
+    <div id="modal-entrar" class="modal">
+        <div class="modal-content">
+            <span class="fechar" onclick="fecharModal('modal-entrar')">&times;</span>
+            <div class="div-form">
+                <form class="form">
+                    <input type="email" name="email" placeholder="E-mail" required>
+                    <input type="password" name="password" placeholder="Senha" required>
+                    <div class="div-button">
+                        <button class="button-submit-form" type="submit">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Inscrever -->
+    <div id="modal-inscrever" class="modal">
+        <div class="modal-content">
+            <span class="fechar" onclick="fecharModal('modal-inscrever')">&times;</span>
+            <div class="div-form">
+                <form class="form">
+                    <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
+
+                    <input type="text" id="nome-de-usuario" name="nome-de-usuario" placeholder="Nome de Usuário"
+                        required>
+
+                    <input type="email" id="email" name="email" placeholder="E-mail" required>
+
+                    <input type="tel" id="tel" name="tel" placeholder="Telefone">
+
+                    <select id="genero" name="genero" required>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
+                    </select>
+
+                    <select id="estado" name="estado" required>
+                        <option value="" disabled selected>Selecione um estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+
+                    <input type="text" id="cidade" name="cidade" placeholder="Cidade">
+
+                    <input type="date" id="nascimento" name="nascimento" required>
+
+                    <input type="password" id="password" name="password" placeholder="Senha" required>
+
+                    <input type="password" id="confirm-password" name="confirm-password"
+                        placeholder="Confirme sua senha" required>
+
+                    <div class="div-button">
+                        <button class="button-submit-form" type="submit">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Criar -->
+    <div id="modal-criar" class="modal">
+        <div class="modal-content modal-criar">
+            <span class="fechar" onclick="fecharModal('modal-criar')">&times;</span>
+            <div class="div-form">
+                <form class="form">
+                    <input type="text" name="titulo-exercicio" placeholder="Título do exercício" required>
+                    <input type="text" name="exercicio" placeholder="Exercício" required>
+                    <input type="number" name="series" placeholder="series" required>
+                    <input type="number" name="repeticoes" placeholder="repeticoes" required>
+                    <textarea class="textarea-sobre-o-treino" rows="4" cols="47"
+                        placeholder="Sobre o treino..."></textarea>
+                    <div class="div-button">
+                        <button class="button-submit-form button-adicionar-novo-treino" type="submit">Novo
+                            exercício</button>
+                        <button class="button-submit-form" type="submit">Criar treino</button>
+                    </div>
+                    <br>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botões nav -->
+    <section>
+        <nav>
+            <div class="div-entrar-inscrever">
+                <button class="button-geral button-entrar" onclick="abrirModal('modal-entrar')">Entrar</button>
+                <button class="button-geral button-inscrever"
+                    onclick="abrirModal('modal-inscrever')">Inscrever-se</button>
+            </div>
+        </nav>
+    </section>
+
+    <!-- As box onde vai ficar cada elementos do exercicios completo -->
+    <div id="excontainer">
+        <div class="gridexercicio">
+            <h4>Exercicios1</h4>
+            <h4>Exercicios2</h4>
+            <h4>Exercicios3</h4>
+            <h4>Exercicios4</h4>
+            <h4>Exercicios5</h4>
+            <h4>Exercicios6</h4>
+        </div>
+        <div class="exitens gridtitulo">
+            <h1>Exemplo Titulo</h1>
+        </div>
+        <div class="exitens griddescricao">
+            <h3>Descrição</h3>
+        </div>
+        <div class="exitens gridavaliacao">
+            <h3>Avaliações</h3>
+        </div>
+        <div class="gridcomentario">
+            <div> comentarios </div>
+            <div> comentarios </div>
+            <div> comentarios </div>
+            <div> comentarios </div>
+            <div> comentarios </div>
+            <div> comentarios </div>
+            <div> comentarios </div>
+            <div> comentarios </div>
+        </div>
+        <div class="exitens gridbuttoncomentar">
+            <div class="gridbuttoncomentar">
+                <button class="button-comentar">Comentar</button>
+              </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

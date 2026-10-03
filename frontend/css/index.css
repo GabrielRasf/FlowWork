@@ -1,0 +1,325 @@
+/* ========== Reset e configurações globais ========== */Add commentMore actions
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: var(--bg-body);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ========== Configuração geral de botões ========== */
+.button-geral {
+    padding: 3px;
+    border-radius: 15px;
+    width: 80px;
+    height: 25.5px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.button-geral:hover {
+    cursor: pointer;
+}
+
+/* ========== Nav ========== */
+nav {
+    background-color: var(--bg-nav);
+    padding: 10px;
+}
+
+.div-entrar-inscrever {
+    max-width: 940px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.button-entrar {
+    border: var(--borda-button-entrar) rgb(118, 66, 214);
+    background-color: var(--bg-button-entrar);
+    color: var(--color-button-entrar);
+}
+
+.button-inscrever {
+    background-color: var(--bg-button-inscrever);
+    color: var(--color-button-inscrever);
+}
+
+/*  ========== Botões da seção principal ========== */
+.button-explorar {
+    background-color: var(--bg-button-explorar);
+    border: var(--borda-button-explorar) white;
+}
+
+.button-criar {
+    background-color: var(--bg-button-criar);
+    color: var(--color-button-criar);
+}
+
+/* ========== Main centralizado ========== */
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ========== Call-redirection ========== */
+.div-call-redirection {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 240px;
+    max-height: 240px;
+}
+
+.div-call-redirection h1,
+.div-call-redirection h5 {
+    margin-bottom: 10px;
+}
+
+.div-call-redirection h1 {
+    font-size: 2.3rem;
+}
+
+.box-call-redirection {
+    width: 120px;
+    height: 180px;
+    border: 1px solid black;
+}
+
+/* ========== Adicionado recentemente ========== */
+.div-adicionado-recentemente {
+    margin-top: 30px;
+}
+
+.div-adicionado-recentemente h2 {
+    margin-bottom: 5px;
+}
+
+.box-adicionado-recentemente {
+    width: 100px;
+    height: 180px;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+.adicionado-recentemente-boxs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ==========  Treinos mais populares ========== */
+
+.div-treinos-mais-populares {
+    margin-top: 30px;
+}
+
+.div-treinos-mais-populares h2 {
+    margin-bottom: 5px;
+}
+
+.box-treinos-mais-populares {
+    width: 100px;
+    height: 180px;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.treinos-mais-populares-boxs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ========== Sua melhor versão ========== */
+
+.div-sua-melhor-versão {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 240px;
+    max-height: 240px;
+}
+
+.box-sua-melhor-versão {
+    width: 100px;
+    height: 180px;
+    border: 1px solid black;
+    margin: 5px 5px 30px 5px;
+}
+
+.span-button-sua-melhor-versão {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ========== Formulários ========== */
+.div-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.div-form form > input,
+.div-form form > select {
+    width: 95%;
+    max-width: 420px;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.452);
+    border-radius: 12px;
+    background-color: transparent;
+}
+
+.div-form label {
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+}
+
+.div-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.button-submit-form {
+    border: none;
+    padding: 8px;
+    border-radius: 12px;
+    margin-left: 5px;
+}
+
+.button-submit-form:hover {
+    cursor: pointer;
+}
+
+/* MODAL ESTILO */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+  }
+  
+  .fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal-criar input:nth-child(3),
+  .modal-criar input:nth-child(4) {
+    width: 90px;
+  }
+
+  /* Textarea modal criar */
+.textarea-sobre-o-treino {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.374);
+    border-radius: 12px;
+    padding: 5px;
+}
+
+/* ========== Footer ========== */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.footer span {
+    font-size: 0.8rem;
+}
+
+/* ========== Media Query ========== */
+@media (max-width: 615px) {
+    .div-adicionado-recentemente {
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .div-treinos-mais-populares {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 345px) {
+    .div-call-redirection {
+        flex-direction: column;
+    }
+
+    .div-call-redirection,
+    .box-call-redirection {
+        margin: 10px 0;
+    }
+
+    .box-call-redirection {
+        height: 100px;
+    }
+
+    .div-adicionado-recentemente,
+    .div-treinos-mais-populares {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .adicionado-recentemente-boxs,
+    .treinos-mais-populares-boxs {
+        justify-content: center;
+    }
+
+    .div-sua-melhor-versão {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .span-button-sua-melhor-versão {
+        margin-bottom: 30px;
+    }
+}
+
+ /* Versão do Gabriel */

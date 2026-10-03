@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Treinos - Flow Work</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* ======================================== */
+        /* VARIÁVEIS DE COR E ESTILOS GLOBAIS       */
+        /* ======================================== */
+        :root {
+            --cor-fundo: #090516;
+            --cor-laranja: #ff5c22;
+            --cor-roxo: #7e23ff;
+            --cor-texto-principal: #e1e5f5;
+            --cor-texto-secundario: #a0a3b0;
+            --cor-divisoria: #e1e5f5;
+            --cor-fundo-modal: #1a1625;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-principal);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* ======================================== */
+        /* HEADER E NAVEGAÇÃO ALINHADOS             */
+        /* ======================================== */
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            background-color: var(--cor-fundo);
+        }
+
+        .logo-container a {
+            display: flex;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        
+        .logo-container .fa-dumbbell {
+            font-size: 2.2rem;
+            margin-right: 10px;
+            color: var(--cor-roxo);
+        }
+        
+        /* Botões do Header */
+        .button-geral {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button-geral:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .button-inicio {
+            background-color: var(--cor-roxo);
+            color: white;
+            margin-right: 10px;
+        }
+        
+        .button-sair {
+            background-color: var(--cor-laranja);
+            color: white;
+        }
+
+        /* ======================================== */
+        /* LAYOUT PRINCIPAL E TÍTULOS               */
+        /* ======================================== */
+        main > section { margin-bottom: 6rem; }
+        h2 { font-size: 2.5rem; border-bottom: 3px solid var(--cor-divisoria); padding-bottom: 10px; margin-bottom: 2.5rem; }
+
+        /* ======================================== */
+        /* CARROSSEL DE TREINOS                     */
+        /* ======================================== */
+        .carousel-container {
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE e Edge */
+            padding-bottom: 1rem;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        .workout-card {
+            flex: 0 0 300px;
+            height: 350px;
+            margin-right: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative; /* Para o gradiente */
+        }
+        .workout-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .workout-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            z-index: 1;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+        }
+        
+        /* Setas do Carrossel */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background-color: var(--cor-roxo);
+            color: white;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .carousel-arrow:hover {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .arrow-prev { left: -22px; }
+        .arrow-next { right: -22px; }
+        
+        /* ======================================== */
+        /* MODAIS DE DETALHES DE TREINO             */
+        /* ======================================== */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); }
+        .modal-content { background-color: var(--cor-fundo-modal); margin: 10% auto; padding: 2.5rem; border: 1px solid #444; width: 90%; max-width: 600px; border-radius: 16px; position: relative; color: var(--cor-texto-principal); }
+        .modal-content h2 { font-size: 2rem; border-bottom: none; margin-bottom: 1rem; color: var(--cor-roxo); }
+        .fechar { color: #aaa; position: absolute; top: 15px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; transition: color 0.2s; }
+        .fechar:hover { color: white; }
+        .modal-content img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem; }
+        .modal-content .descricao-treino { margin: 1rem 0; color: var(--cor-texto-secundario); font-size: 1.1rem; line-height: 1.6; }
+        .botao-ver-treino { display: block; width: 100%; padding: 14px; margin-top: 1.5rem; background-color: var(--cor-roxo); color: white; text-align: center; text-decoration: none; font-weight: bold; border-radius: 8px; transition: background-color 0.3s; font-size: 1.1rem; }
+        .botao-ver-treino:hover { background-color: #5d1abd; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo-container">
+                    <a href="../frontend/pages/index.html">
+                        <i class="fa-solid fa-dumbbell"></i>Flow Work
+                    </a>
+                </div>
+                <div class="botoes-nav">
+                    <a href="../frontend/pages/index.html" class="button-geral button-inicio">Início</a>
+                    <a href="../frontend/pages/index.html" class="button-geral button-sair">Sair</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="div-adicionado-recentemente">
+                <h2>Adicionado Recentemente</h2>
+                <div class="carousel-container">
+                    <button class="carousel-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <div class="workout-card" onclick="abrirModal('modal-forca-total')">
+                            <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=500" alt="Treino de Força">
+                            <div class="card-content"><h3>Treino de Força Total</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-cardio-hiit')">
+                            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500" alt="Cardio HIIT">
+                            <div class="card-content"><h3>Cardio Intenso HIIT</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-yoga-flex')">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500" alt="Yoga">
+                            <div class="card-content"><h3>Yoga para Flexibilidade</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-core-aco')">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9Ftiwhn48rRWgEk_hGyLPZWWuM6ENRqNKEC6TyQfMbTB0UIpNH0scoUMkY4zvoCpsbiZ4yDz1UdhIZwx2z89nUtMNHi8Q0gW0HAvDgBPa27mkk2UrS2mspS_kCRCd86IQVDOYE-4gBWg/s640/academia-equipamentos-calistenia-em-casa.jpg" alt="Core de Aço">
+                            <div class="card-content"><h3>Core de Aço</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-calistenia')">
+                            <img src="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2023/11/24/1334167668-istock-1448818000.jpg" alt="Calistenia">
+                            <div class="card-content"><h3>Calistenia para Iniciantes</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-mobilidade')">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500" alt="Mobilidade">
+                            <div class="card-content"><h3>Mobilidade Articular</h3></div>
+                        </div>
+                    </div>
+                    <button class="carousel-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </section>
+
+            <section class="div-treinos-mais-populares">
+                <h2>Treinos mais populares</h2>
+                <div class="carousel-container">
+                    <button class="carousel-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <div class="workout-card" onclick="abrirModal('modal-peito-triceps')">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500" alt="Peito e Tríceps">
+                             <div class="card-content"><h3>Peito e Tríceps Clássico</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-costas-biceps')">
+                            <img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=500" alt="Costas e Bíceps">
+                             <div class="card-content"><h3>Costas e Bíceps Monstro</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-pernas-destruir')">
+                            <img src="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2024/01/12/1723756122-istock-1620263211.jpg" alt="Pernas">
+                             <div class="card-content"><h3>Pernas para Destruir</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-ombros-3d')">
+                            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=500" alt="Ombros">
+                             <div class="card-content"><h3>Ombros 3D</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-full-body')">
+                            <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?w=500" alt="Full Body">
+                             <div class="card-content"><h3>Full Body para Queimar</h3></div>
+                        </div>
+                        <div class="workout-card" onclick="abrirModal('modal-abs-definido')">
+                            <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=500" alt="ABS">
+                            <div class="card-content"><h3>ABS Definido</h3></div>
+                        </div>
+                    </div>
+                    <button class="carousel-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </section>
+        </main>
+    </div> <section class="modals">
+        <div id="modal-forca-total" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-forca-total')">&times;</span><img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=500" alt="Força Total"><h2>Treino de Força Total</h2><p class="descricao-treino">Trabalhe todos os grandes grupos musculares para ganho de força e hipertrofia. Ideal para quem busca uma base sólida.</p><a href="../frontend/pages/forca_Total.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-cardio-hiit" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-cardio-hiit')">&times;</span><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500" alt="Cardio HIIT"><h2>Cardio Intenso HIIT</h2><p class="descricao-treino">Treino intervalado de alta intensidade para máxima queima de calorias e melhora do condicionamento cardiovascular em tempo recorde.</p><a href="../frontend/pages/cardio-hiit.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-yoga-flex" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-yoga-flex')">&times;</span><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500" alt="Yoga"><h2>Yoga para Flexibilidade</h2><p class="descricao-treino">Aumente sua flexibilidade, alivie o estresse e conecte corpo e mente com esta sequência de posturas relaxantes.</p><a href="../frontend/pages/yoga-flexibilidade.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-core-aco" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-core-aco')">&times;</span><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9Ftiwhn48rRWgEk_hGyLPZWWuM6ENRqNKEC6TyQfMbTB0UIpNH0scoUMkY4zvoCpsbiZ4yDz1UdhIZwx2z89nUtMNHi8Q0gW0HAvDgBPa27mkk2UrS2mspS_kCRCd86IQVDOYE-4gBWg/s640/academia-equipamentos-calistenia-em-casa.jpg" alt="Core de Aço"><h2>Core de Aço</h2><p class="descricao-treino">Fortaleça e defina todos os músculos do seu abdômen e lombar, melhorando a postura e a estabilidade do corpo.</p><a href="../frontend/pages/core-de-aco.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-calistenia" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-calistenia')">&times;</span><img src="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2023/11/24/1334167668-istock-1448818000.jpg" alt="Calistenia"><h2>Calistenia para Iniciantes</h2><p class="descricao-treino">Aprenda a dominar seu peso corporal com exercícios fundamentais que constroem força funcional em qualquer lugar.</p><a href="../frontend/pages/calistenia-iniciantes.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-mobilidade" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-mobilidade')">&times;</span><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500" alt="Mobilidade"><h2>Mobilidade Articular</h2><p class="descricao-treino">Melhore sua amplitude de movimento, alivie dores e previna lesões com exercícios focados na saúde das suas articulações.</p><a href="../frontend/pages/mobilidade_Articular.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-peito-triceps" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-peito-triceps')">&times;</span><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500" alt="Peito e Tríceps"><h2>Peito e Tríceps Clássico</h2><p class="descricao-treino">O treino clássico para desenvolver força e volume no peito e tríceps, utilizando exercícios consagrados na musculação.</p><a href="../frontend/pages/peito_Triceps.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-costas-biceps" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-costas-biceps')">&times;</span><img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=500" alt="Costas e Bíceps"><h2>Costas e Bíceps Monstro</h2><p class="descricao-treino">Construa costas largas e bíceps definidos com este treino intenso focado em puxadas e remadas.</p><a href="../frontend/pages/costas-biceps.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-pernas-destruir" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-pernas-destruir')">&times;</span><img src="https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2024/01/12/1723756122-istock-1620263211.jpg" alt="Pernas"><h2>Pernas para Destruir</h2><p class="descricao-treino">Um treino completo para membros inferiores, focado em agachamentos, leg press e outros exercícios para força e hipertrofia.</p><a href="../frontend/pages/pernas-destruir.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-ombros-3d" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-ombros-3d')">&times;</span><img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=500" alt="Ombros"><h2>Ombros 3D</h2><p class="descricao-treino">Desenvolva ombros arredondados e definidos trabalhando todas as três cabeças do deltoide com elevações e desenvolvimentos.</p><a href="../frontend/pages/ombros_3d.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-full-body" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-full-body')">&times;</span><img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?w=500" alt="Full Body"><h2>Full Body para Queimar</h2><p class="descricao-treino">Um treino de corpo inteiro para acelerar o metabolismo, queimar gordura e melhorar o condicionamento geral.</p><a href="../frontend/pages/full_Body.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+        <div id="modal-abs-definido" class="modal"><div class="modal-content"><span class="fechar" onclick="fecharModal('modal-abs-definido')">&times;</span><img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=500" alt="ABS"><h2>ABS Definido</h2><p class="descricao-treino">Trabalhe seu abdômen de todos os ângulos com uma variedade de crunches, pranchas e elevações de perna para um resultado visível.</p><a href="../frontend/pages/abs-definido.html" class="botao-ver-treino">Ver Treino Completo</a></div></div>
+       
+    </section>
+
+    <script>
+        // Funções do Modal
+        function abrirModal(idModal) {
+            const modal = document.getElementById(idModal);
+            if (modal) modal.style.display = "block";
+        }
+
+        function fecharModal(idModal) {
+            const modal = document.getElementById(idModal);
+            if (modal) modal.style.display = "none";
+        }
+
+        // Fecha o modal se o usuário clicar fora do conteúdo
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+
+        // Lógica do Carrossel
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousels = document.querySelectorAll('.carousel-container');
+
+            carousels.forEach(carousel => {
+                const track = carousel.querySelector('.carousel-track');
+                const prevButton = carousel.querySelector('.arrow-prev');
+                const nextButton = carousel.querySelector('.arrow-next');
+                
+                // Garante que o track e os botões existem antes de adicionar os eventos
+                if (track && prevButton && nextButton) {
+                    const card = track.querySelector('.workout-card');
+                    if (!card) return; // Sai se não houver cards no carrossel
+
+                    const cardWidth = card.offsetWidth;
+                    const cardMargin = parseFloat(window.getComputedStyle(card).marginRight);
+                    const scrollAmount = cardWidth + cardMargin;
+
+                    prevButton.addEventListener('click', () => {
+                        track.scrollLeft -= scrollAmount;
+                    });
+
+                    nextButton.addEventListener('click', () => {
+                        track.scrollLeft += scrollAmount;
+                    });
+                }
+            });
+        });
+
+        
+    </script>
+</body>
+</html>

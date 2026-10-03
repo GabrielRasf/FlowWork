@@ -1,0 +1,199 @@
+/* ========== Reset e configurações globais ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: var(--bg-body);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ========== Configuração geral de botões ========== */
+.button-geral {
+    padding: 3px;
+    border-radius: 15px;
+    width: 80px;
+    height: 25.5px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.button-geral:hover {
+    cursor: pointer;
+}
+
+/* ========== Nav ========== */
+nav {
+    background-color: var(--bg-nav);
+    padding: 10px;
+}
+
+.div-entrar-inscrever {
+    max-width: 940px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.button-entrar {
+    border: var(--borda-button-entrar) white;
+    background-color: var(--bg-button-entrar);
+    color: var(--color-button-entrar);
+}
+
+.button-inscrever {
+    background-color: var(--bg-button-inscrever);
+    color: var(--color-button-inscrever);
+}
+
+/*  ========== Botões da seção principal ========== */
+.button-explorar {
+    background-color: var(--bg-button-explorar);
+    border: var(--borda-button-explorar) black;
+}
+
+.button-criar {
+    background-color: var(--bg-button-criar);
+    color: var(--color-button-criar);
+}
+
+/* ========== Main centralizado ========== */
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ========== Foto de perfil e banner ========== */
+.div-banner-perfil {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 240px;
+    max-height: 240px;
+    background-color: rgb(255, 120, 120);
+    position: relative;
+    border-radius: 15px;
+}
+
+.foto-perfil {
+    width: 120px;
+    height: auto;
+    position: absolute;
+    bottom: -50px;
+    left: 30px;
+}
+
+/* ========== Meus treinos ========== */
+
+.titulo-treino span,
+.criador-treino span,
+.avaliacao-treino {
+    font-size: 0.6rem;
+}
+
+.div-meus-treinos {
+    margin-top: 90px;
+}
+
+.div-meus-treinos h2 {
+    margin-bottom: 5px;
+}
+
+.box-meus-treinos {
+    width: 120px;
+    height: 180px;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+.meus-treinos-boxs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ==========  Treinos favoritos ========== */
+
+.div-treinos-favoritos {
+    margin-top: 30px;
+}
+
+.div-treinos-favoritos h2 {
+    margin-bottom: 5px;
+}
+
+.box-treinos-favoritos {
+    width: 100px;
+    height: 180px;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.treinos-favoritos-boxs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ========== Footer ========== */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.footer span {
+    font-size: 0.8rem;
+}
+
+/* ========== Media Query ========== */
+@media (max-width: 615px) {
+    .div-meus-treinos {
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .div-treinos-favoritos {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 345px) {
+    .div-banner-perfil {
+        flex-direction: column;
+    }
+
+    .div-banner-perfil,
+    .box-banner-perfil {
+        margin: 10px 0;
+    }
+
+    .div-meus-treinos,
+    .div-treinos-favoritos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .meus-treinos-boxs,
+    .treinos-favoritos-boxs {
+        justify-content: center;
+    }
+}
+
+  

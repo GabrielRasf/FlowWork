@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil -  Flow Work</title>
+    <link rel="stylesheet" href="../css/root.css">
+    <link rel="stylesheet" href="../css/edit_perfil.css">
+    <link rel="stylesheet" href="../css/index.css">
+    
+</head>
+
+<body style="background-color: var(--bg-body); color: var(--text);">
+
+    <section class="div-form"
+        style="max-width: 500px; margin: 50px auto; padding: 20px; background-color: #1a112c; border-radius: 12px;">
+        <h2 style="text-align: center; color: var(--primary);">Editar Perfil</h2>
+        <form class="form">
+            
+            <div class="profile-photo-container">
+                <img id="preview-foto" src="img/foto-inexistente.png" class="profile-photo">
+                <label for="input-foto" class="button-trocar-foto">Escolher nova foto</label>
+                <input type="file" id="input-foto" accept="image/*" style="display: none;">
+            </div>
+
+            <input type="text" name="nome" placeholder="Nome completo" required>
+            <input type="text" name="nome-de-usuario" placeholder="Nome de Usuário" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="tel" name="tel" placeholder="Telefone">
+
+            <select name="genero" required>
+                <option value="" disabled selected>Gênero</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="outro">Outro</option>
+            </select>
+
+            <select name="estado" required>
+                <option value="" disabled selected>Estado</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
+
+            <input type="text" name="cidade" placeholder="Cidade">
+            <input type="date" name="nascimento" required>
+            <input type="password" name="nova-senha" placeholder="Nova Senha (opcional)">
+            <input type="password" name="confirmar-senha" placeholder="Confirmar Nova Senha">
+
+            <div class="div-button" style="margin-top: 20px;">
+                <button class="button-submit-form" type="submit">Salvar Alterações</button>
+            </div>
+        </form>
+    </section>
+
+    <script src="../js/edit_perfil.js"></script>
+</body>
+
+</html>

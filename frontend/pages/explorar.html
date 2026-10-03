@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Treinos - Flow Work</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/explorar.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo-container">
+                    <a href="index.html">
+                        <i class="fa-solid fa-dumbbell"></i>Flow Work
+                    </a>
+                </div>
+                <div class="botoes-nav">
+                    <a href="index.html" class="button-geral button-inicio">Início</a>
+                    <a href="index.html" class="button-geral button-sair">Sair</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="div-adicionado-recentemente">
+                <h2>Adicionado Recentemente</h2>
+                <div class="carousel-container">
+                    <button class="carousel-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-track" id="lista-recentes"></div>
+                    <button class="carousel-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </section>
+
+            <section class="div-treinos-mais-populares">
+                <h2>Treinos mais populares</h2>
+                <div class="carousel-container">
+                    <button class="carousel-arrow arrow-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-track" id="lista-populares"></div>
+                    <button class="carousel-arrow arrow-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <section class="modals">
+        <div id="modal-ficha" class="modal">
+            <div class="modal-content">
+                <span class="fechar" id="fechar-ficha">&times;</span>
+                <h2 id="modal-titulo"></h2>
+                <p class="descricao-treino" id="modal-descricao"></p>
+                <div id="modal-blocos"></div>
+                <section class="comentarios-ficha" id="secao-comentarios">
+                    <h3>Comentários</h3>
+                    <div id="lista-comentarios"></div>
+                    <form id="form-comentario" class="form-comentario">
+                        <input id="comentario-autor" type="text" maxlength="80" placeholder="Seu nome" autocomplete="nickname">
+                        <textarea id="comentario-texto" maxlength="500" placeholder="Escreva um comentário"></textarea>
+                        <button type="submit" class="button-geral button-inicio" id="enviar-comentario">Publicar comentário</button>
+                        <p id="comentario-aviso" class="comentario-aviso"></p>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="../js/explorar.js"></script>
+</body>
+</html>
