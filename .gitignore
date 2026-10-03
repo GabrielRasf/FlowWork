@@ -6,3 +6,6 @@ bin/
 obj/
 .vs/
 legacy/
+
+.vercel
+.env*
